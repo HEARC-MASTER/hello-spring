@@ -45,12 +45,21 @@ class HelloSpringApplicationTests {
     }
 
     @Test
-    public void callSendMusstSendAnEmail() throws Exception {
+    public void callSendMailMusstSendAnEmail() throws Exception {
 
         //Dans un premier temps on va tester le message du retour du service de mail
-        this.mvc.perform(get("/send"))
+        this.mvc.perform(get("/send/mail"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Mail message successfully send!"));
+    }
+
+    @Test
+    public void callSendSmsMusstSendASms() throws Exception {
+
+        //Dans un premier temps on va tester le message du retour du service de mail
+        this.mvc.perform(get("/send/sms"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("SMS message successfully send!"));
     }
 
 }
