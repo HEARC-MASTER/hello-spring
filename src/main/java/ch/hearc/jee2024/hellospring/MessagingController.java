@@ -15,9 +15,12 @@ public class MessagingController {
 
     private static final Logger LOGGER = Logger.getLogger(MessagingController.class.getName());
 
-    @Autowired
-    private MessagingService x;
 
+    private MessagingService messagingService;
+
+    public MessagingController(MessagingService messagingService){
+        this.messagingService = messagingService;
+    }
 
 
     @GetMapping()
