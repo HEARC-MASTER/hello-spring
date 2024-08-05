@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.logging.Logger;
 
-//@Component
+@Component
 public class EmailService implements MessagingService{
 
     private static final Logger LOGGER = Logger.getLogger(EmailService.class.getName());
