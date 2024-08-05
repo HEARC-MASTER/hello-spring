@@ -26,7 +26,7 @@ public class MessagingController {
     @GetMapping()
     public String send(){
         //ici appell du service d'envoi
-        String mailResult = x.send("test","test@test.ch");
+        String mailResult = messagingService.send("test","test@test.ch");
         LOGGER.info(mailResult);
         return mailResult;
     }
