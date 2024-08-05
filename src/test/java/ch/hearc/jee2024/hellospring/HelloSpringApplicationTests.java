@@ -23,6 +23,16 @@ class HelloSpringApplicationTests {
         this.mvc.perform(get("/hello"))  //GET /hello
                 .andExpect(status().isOk())         //Status code = 200
                 .andExpect(content().string("Hello World!")); //Body = "Hello World!"
+
+    }
+
+    @Test
+    public void callSendMusstSendAnEmail() throws Exception {
+
+        //Dans un premier temps on va tester le message du retour du service de mail
+        this.mvc.perform(get("/send"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Mail message successfully send!"));
     }
 
 }
