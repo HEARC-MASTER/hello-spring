@@ -4,9 +4,7 @@ import ch.hearc.jee2024.hellospring.ioc.EmailService;
 import ch.hearc.jee2024.hellospring.ioc.MessagingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.logging.Logger;
 
@@ -26,6 +24,27 @@ public class MessagingController {
 
     }
 
+    @GetMapping("/{type}")
+    public String send(@PathVariable(required = true) String type) {
+        switch (type) {
+            case "sms":
+                String smsResult = smsService.send("test", "test@test.ch");
+                LOGGER.info(smsResult);
+                return smsResult;
+
+
+            case "mail":
+                String mailResult = mailService.send("test", "test@test.ch");
+                LOGGER.info(mailResult);
+                return mailResult;
+
+
+            default:
+                throw new RuntimeException("Path variable parameter not allowed");
+        }
+    }
+
+    /*
     @GetMapping("/mail")
     public String sendMail(){
         //ici appell du service d'envoi
@@ -42,4 +61,51 @@ public class MessagingController {
         LOGGER.info(mailResult);
         return mailResult;
     }
+*/
+
+
+    @GetMapping("/header")
+    public String sendByHeader(
+            @RequestHeader(value = "type", required = true) String type) {
+
+        switch (type) {
+            case "sms":
+                String smsResult = smsService.send("test", "test@test.ch");
+                LOGGER.info(smsResult);
+                return smsResult;
+
+
+            case "mail":
+                String mailResult = mailService.send("test", "test@test.ch");
+                LOGGER.info(mailResult);
+                return mailResult;
+
+
+            default:
+                throw new RuntimeException("Parameter not allowed");
+        }
+    }
+    @GetMapping()
+    public String sendByType(@RequestParam(required = true) String type ){
+
+        switch (type){
+            case "sms":
+                String smsResult = smsService.send("test","test@test.ch");
+                LOGGER.info(smsResult);
+                return smsResult;
+
+
+            case "mail":
+                String mailResult = mailService.send("test","test@test.ch");
+                LOGGER.info(mailResult);
+                return mailResult;
+
+
+            default:throw new RuntimeException("Request Parameter not allowed");
+        }
+
+
+
+    }
+
 }
