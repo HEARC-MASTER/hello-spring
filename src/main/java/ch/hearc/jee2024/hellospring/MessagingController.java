@@ -68,22 +68,22 @@ public class MessagingController {
     public String sendByHeader(
             @RequestHeader(value = "type", required = true) String type) {
 
-        switch (type) {
-            case "sms":
-                String smsResult = smsService.send("test", "test@test.ch");
-                LOGGER.info(smsResult);
-                return smsResult;
+            switch (type) {
+                case "sms":
+                    String smsResult = smsService.send("test", "test@test.ch");
+                    LOGGER.info(smsResult);
+                    return smsResult;
 
 
-            case "mail":
-                String mailResult = mailService.send("test", "test@test.ch");
-                LOGGER.info(mailResult);
-                return mailResult;
+                case "mail":
+                    String mailResult = mailService.send("test", "test@test.ch");
+                    LOGGER.info(mailResult);
+                    return mailResult;
 
 
-            default:
-                throw new RuntimeException("Parameter not allowed");
-        }
+                default:
+                    throw new RuntimeException("Parameter not allowed");
+            }
     }
     @GetMapping()
     public String sendByType(@RequestParam(required = true) String type ){
