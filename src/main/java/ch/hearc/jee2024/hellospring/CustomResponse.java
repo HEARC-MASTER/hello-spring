@@ -2,8 +2,8 @@ package ch.hearc.jee2024.hellospring;
 
 public class CustomResponse {
 
-    private String valeur1;
-    private String valeur2;
+    public String valeur1;
+    public String valeur2;
 
     public CustomResponse(String valeur1, String valeur2) {
         this.valeur1 = valeur1;
